@@ -6,7 +6,7 @@ import { StatusBadge } from "@/components/shared/StatusBadge";
 import { CurrencyDisplay } from "@/components/shared/CurrencyDisplay";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, Search, Edit, Trash2, Car as CarIcon, Bike, Truck, Fuel, Gauge, Banknote, Globe2, Image as ImageIcon, SlidersHorizontal, Eye, EyeOff } from "lucide-react";
+import { Plus, Search, Edit, Trash2, Car as CarIcon, Bike, Truck, Fuel, Gauge, Banknote, Globe2, Image as ImageIcon, SlidersHorizontal, Eye, EyeOff, CalendarDays, ShieldAlert } from "lucide-react";
 import { ConfirmDialog } from "@/components/shared/ConfirmDialog";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -55,6 +55,103 @@ type StatusFilterOption =
   | "In Service"
   | "Maintenance";
 
+type DocumentHealth = "missing" | "expired" | "expiring" | "valid";
+
+function getDateOnly(value: string): Date | null {
+  if (!value) {
+    return null;
+  }
+
+  const date = new Date(`${value}T00:00:00`);
+
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  return date;
+}
+
+function getDaysUntilDate(value: string): number | null {
+  const date = getDateOnly(value);
+
+  if (!date) {
+    return null;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return Math.ceil((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+function getDocumentHealth(
+  value: string,
+  reminderDays: number
+): DocumentHealth {
+  const daysUntil = getDaysUntilDate(value);
+
+  if (daysUntil === null) {
+    return "missing";
+  }
+
+  if (daysUntil < 0) {
+    return "expired";
+  }
+
+  if (daysUntil <= reminderDays) {
+    return "expiring";
+  }
+
+  return "valid";
+}
+
+function formatExpiryDate(value: string): string {
+  const date = getDateOnly(value);
+
+  if (!date) {
+    return "Not set";
+  }
+
+  return date.toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function getDocumentBadgeClass(health: DocumentHealth): string {
+  if (health === "expired") {
+    return "bg-red-100 text-red-700 border-red-200";
+  }
+
+  if (health === "expiring") {
+    return "bg-amber-100 text-amber-700 border-amber-200";
+  }
+
+  if (health === "missing") {
+    return "bg-slate-100 text-slate-600 border-slate-200";
+  }
+
+  return "bg-emerald-100 text-emerald-700 border-emerald-200";
+}
+
+function getDocumentLabel(health: DocumentHealth): string {
+  if (health === "expired") {
+    return "Expired";
+  }
+
+  if (health === "expiring") {
+    return "Expiring Soon";
+  }
+
+  if (health === "missing") {
+    return "Not Set";
+  }
+
+  return "Valid";
+}
+
+
 const carSchema = z.object({
   id: z.string().optional(),
   vehicleType: z.enum(["Car", "Bike", "Scooter", "Van", "Other"]),
@@ -68,6 +165,8 @@ const carSchema = z.object({
   extraKmRate: z.coerce.number().min(0),
   lateHourlyCharge: z.coerce.number().min(0),
   status: z.enum(["Available", "Booked", "In Service", "Maintenance"]),
+  insuranceExpiryDate: z.string().optional(),
+  pucExpiryDate: z.string().optional(),
   notes: z.string().optional(),
 });
 
@@ -75,13 +174,15 @@ function VehicleFormModal({ car, onSave, onClose, open }: {
   car?: Car | null; onSave: () => void; onClose: () => void; open: boolean;
 }) {
   const { toast } = useToast();
+  const settings = getSettings();
+  const documentReminderDays = settings.vehicleDocumentReminderDays || 15;
   const form = useForm<z.infer<typeof carSchema>>({
     resolver: zodResolver(carSchema),
     defaultValues: car || {
       vehicleType: "Car",
       carName: "", vehicleNumber: "", fuelType: "Petrol", transmissionType: "Manual",
       currentKm: 0, defaultDailyRent: 1500, defaultPerKmRate: 10, extraKmRate: 10,
-      lateHourlyCharge: 200, status: "Available", notes: "",
+      lateHourlyCharge: 200, status: "Available", insuranceExpiryDate: "", pucExpiryDate: "", notes: "",
     },
   });
 
@@ -173,6 +274,20 @@ function VehicleFormModal({ car, onSave, onClose, open }: {
                       {["Available","Booked","In Service","Maintenance"].map(v => <SelectItem key={v} value={v}>{v}</SelectItem>)}
                     </SelectContent>
                   </Select><FormMessage />
+                </FormItem>
+              )} />
+              <FormField control={form.control} name="insuranceExpiryDate" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Insurance Expiry Date</FormLabel>
+                  <FormControl><Input type="date" {...field} value={field.value || ""} /></FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
+              <FormField control={form.control} name="pucExpiryDate" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>PUC Expiry Date</FormLabel>
+                  <FormControl><Input type="date" {...field} value={field.value || ""} /></FormControl>
+                  <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="defaultDailyRent" render={({ field }) => (
@@ -617,6 +732,22 @@ export default function Cars() {
 
   const publicListingCount = publicCars.length;
 
+  const expiredDocumentCount = cars.filter((car) => {
+    return (
+      getDocumentHealth(car.insuranceExpiryDate, documentReminderDays) ===
+        "expired" ||
+      getDocumentHealth(car.pucExpiryDate, documentReminderDays) === "expired"
+    );
+  }).length;
+
+  const expiringDocumentCount = cars.filter((car) => {
+    return (
+      getDocumentHealth(car.insuranceExpiryDate, documentReminderDays) ===
+        "expiring" ||
+      getDocumentHealth(car.pucExpiryDate, documentReminderDays) === "expiring"
+    );
+  }).length;
+
   return (
     <Layout>
       <div className="flex flex-col gap-5">
@@ -628,6 +759,30 @@ export default function Cars() {
           <Button onClick={() => { setEditingCar(null); setIsModalOpen(true); }} className="gap-2 w-full sm:w-auto">
             <Plus className="w-4 h-4" /> Add Vehicle
           </Button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="rounded-xl border bg-card p-4">
+            <p className="text-xs text-muted-foreground">Document Reminder</p>
+            <p className="text-xl font-bold">{documentReminderDays} days</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Adjustable in Settings
+            </p>
+          </div>
+
+          <div className="rounded-xl border bg-red-50 border-red-200 p-4">
+            <p className="text-xs text-muted-foreground">Expired Documents</p>
+            <p className="text-2xl font-bold text-red-700">
+              {expiredDocumentCount}
+            </p>
+          </div>
+
+          <div className="rounded-xl border bg-amber-50 border-amber-200 p-4">
+            <p className="text-xs text-muted-foreground">Expiring Soon</p>
+            <p className="text-2xl font-bold text-amber-700">
+              {expiringDocumentCount}
+            </p>
+          </div>
         </div>
 
         {/* Type filter tabs */}
@@ -764,6 +919,58 @@ export default function Cars() {
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-muted-foreground"><Fuel className="w-3.5 h-3.5" />Type</span>
                     <span className="font-medium">{car.fuelType} · {car.transmissionType}</span>
+                  </div>
+
+                  <div className="rounded-lg border bg-muted/20 p-2 space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="flex items-center gap-1.5 text-muted-foreground">
+                        <CalendarDays className="w-3.5 h-3.5" />
+                        Insurance
+                      </span>
+                      <span
+                        className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold ${getDocumentBadgeClass(
+                          getDocumentHealth(
+                            car.insuranceExpiryDate,
+                            documentReminderDays
+                          )
+                        )}`}
+                      >
+                        {getDocumentLabel(
+                          getDocumentHealth(
+                            car.insuranceExpiryDate,
+                            documentReminderDays
+                          )
+                        )}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {formatExpiryDate(car.insuranceExpiryDate)}
+                    </p>
+
+                    <div className="flex items-center justify-between gap-2 pt-1 border-t">
+                      <span className="flex items-center gap-1.5 text-muted-foreground">
+                        <ShieldAlert className="w-3.5 h-3.5" />
+                        PUC
+                      </span>
+                      <span
+                        className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold ${getDocumentBadgeClass(
+                          getDocumentHealth(
+                            car.pucExpiryDate,
+                            documentReminderDays
+                          )
+                        )}`}
+                      >
+                        {getDocumentLabel(
+                          getDocumentHealth(
+                            car.pucExpiryDate,
+                            documentReminderDays
+                          )
+                        )}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {formatExpiryDate(car.pucExpiryDate)}
+                    </p>
                   </div>
                 </div>
               </div>

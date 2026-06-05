@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pixel by Swaraj - Premium Photography & Videography Services. Capture your story with professional wedding, event, and commercial photography.">
+    <meta name="keywords" content="photography, videography, wedding photography, event photography, professional photographer">
+    <meta name="author" content="Pixel by Swaraj">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Pixel by Swaraj - Professional Photography & Videography">
+    <meta property="og:description" content="Capture your story with premium photography and videography services.">
+    <meta property="og:type" content="website">
+    
+    <title>Pixel by Swaraj - Professional Photography & Videography</title>
+    
+    <style>
+        /* ===========================
+           CSS VARIABLES & RESET
+           =========================== */
+
+        :root {
+            --color-black: #0a0a0a;
+            --color-white: #ffffff;
+            --color-gold: #d4af37;
+            --color-gold-light: #e8c547;
+            --color-dark-gray: #1a1a1a;
+            --color-medium-gray: #2a2a2a;
+            --color-light-gray: #f5f5f5;
+            --color-text: #e0e0e0;
+            
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-black);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===========================
+           TYPOGRAPHY
+           =========================== */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--color-white);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===========================
+           CONTAINER
+           =========================== */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+        }
+
+        /* ===========================
+           BUTTONS
+           =========================== */
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: var(--color-gold);
+            color: var(--color-black);
+            border-color: var(--color-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-gold-light);
+            border-color: var(--color-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-gold);
+            border-color: var(--color-gold);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-gold);
+            color: var(--color-black);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .form-btn {
+            width: 100%;
+            margin-top: var(--spacing-md);
+        }
+
+        /* ===========================
+           NAVIGATION
+           =========================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            min-width: 0;
+        }
+
+        .brand-name {
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            white-space: nowrap;
+        }
+
+        .brand-name::after {
+            content: 'Photography & Videography';
+            display: block;
+            color: var(--color-gold);
+            font-family: var(--font-body);
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: -2px;
+        }
+
+        .logo {
+            height: 64px;
+            width: auto;
+            max-width: 86px;
+            object-fit: contain;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .logo:hover {
+            filter: brightness(1.1);
+        }
+
+
+        .logo-fallback,
+        .hero-logo-fallback {
+            color: var(--color-gold);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .logo-fallback {
+            font-size: 1.05rem;
+        }
+
+        .hero-logo-fallback {
+            font-size: clamp(1.8rem, 7vw, 4rem);
+        }
+
+        .hero-logo-wrapper,
+        .footer-section:first-child {
+            align-items: flex-start;
+        }
+
+        .hero-logo-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .logo,
+        .hero-logo,
+        .footer-logo {
+            display: block;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .logo {
+            max-width: 170px;
+        }
+
+        .hero-logo {
+            max-width: min(320px, 80vw);
+        }
+
+        .footer-logo {
+            max-width: 190px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--color-text);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-gold);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:hover {
+            color: var(--color-gold);
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--color-gold);
+            color: var(--color-black);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            background-color: var(--color-gold-light);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            gap: 6px;
+            padding: var(--spacing-xs);
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-gold);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(10, 10, 10, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                gap: var(--spacing-lg);
+                padding: var(--spacing-xl) 0;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-link:hover {
+                color: var(--color-gold);
+            }
+
+            .nav-cta {
+                margin: 0 var(--spacing-lg);
+            }
+
+            .logo {
+                height: 54px;
+                max-width: 74px;
+            }
+
+            .brand-name {
+                font-size: 1rem;
+            }
+
+            .brand-name::after {
+                font-size: 0.5rem;
+                letter-spacing: 1px;
+            }
+
+            .navbar-container {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                top: 60px;
+                gap: var(--spacing-md);
+                padding: var(--spacing-lg) 0;
+            }
+
+            .brand-name {
+                font-size: 0.9rem;
+            }
+
+            .brand-name::after {
+                display: none;
+            }
+
+            .logo {
+                height: 50px;
+                max-width: 68px;
+            }
+
+            .nav-cta {
+                margin: 0 var(--spacing-md);
+            }
+        }
+
+        /* ===========================
+           HERO SECTION
+           =========================== */
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 70px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo-wrapper {
+            display: none;
+        }
+
+        .hero-logo {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-sm);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin-bottom: var(--spacing-xl);
+            font-family: var(--font-heading);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                margin-top: 60px;
+                min-height: 80vh;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .hero-logo {
+                height: 100px;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                gap: var(--spacing-md);
+            }
+
+            .btn {
+                padding: 0.875rem 2rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 70vh;
+                margin-top: 60px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .hero-logo {
+                height: 80px;
+            }
+
+            .hero-content {
+                padding: var(--spacing-lg);
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+                margin-bottom: var(--spacing-xl);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .btn {
+                width: 100%;
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===========================
+           SECTION HEADERS
+           =========================== */
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-gold) 0%, transparent 100%);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+
+        /* ===========================
+           PORTFOLIO SECTION
+           =========================== */
+
+        .portfolio {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--color-black);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: transparent;
+            border: 2px solid var(--color-medium-gray);
+            color: var(--color-text);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-black);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: var(--color-medium-gray);
+            cursor: pointer;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: flex-end;
+            min-height: 150px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-category {
+            color: var(--color-gold);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .filter-buttons {
+                gap: var(--spacing-sm);
+                margin-bottom: var(--spacing-xl);
+            }
+
+            .filter-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===========================
+           SERVICES SECTION
+           =========================== */
+
+        .services {
+            padding: var(--spacing-2xl) 0;
+            background: linear-gradient(180deg, var(--color-black) 0%, var(--color-dark-gray) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-xl);
+        }
+
+        .service-card {
+            background-color: var(--color-medium-gray);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+        }
+
+        .service-icon svg {
+            width: 38px;
+            height: 38px;
+            stroke: var(--color-gold);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-white);
+        }
+
+        .service-description {
+            font-size: 1rem;
+            color: var(--color-text);
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .service-card {
+                padding: var(--spacing-lg);
+            }
+
+            .service-title {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* ===========================
+           WHY CHOOSE US SECTION
+           =========================== */
+
+        .why-choose-us {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--color-black);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .feature-number {
+            font-size: 3rem;
+            color: var(--color-gold);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            margin-bottom: var(--spacing-md);
+            line-height: 1;
+        }
+
+        .feature-title {
+            font-size: 1.35rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-text {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-choose-us {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .feature-item {
+                padding: var(--spacing-lg);
+            }
+        }
+
+        /* ===========================
+           ABOUT SECTION
+           =========================== */
+
+        .about {
+            padding: var(--spacing-2xl) 0;
+            background: linear-gradient(180deg, var(--color-dark-gray) 0%, var(--color-black) 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-xl);
+            }
+
+            .about-image {
+                aspect-ratio: 16/9;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* ===========================
+           TESTIMONIALS SECTION
+           =========================== */
+
+        .testimonials {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--color-black);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+        }
+
+        .testimonial-card {
+            background-color: var(--color-medium-gray);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            margin-bottom: var(--spacing-lg);
+            font-style: italic;
+            line-height: 1.9;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: var(--spacing-md);
+        }
+
+        .author-name {
+            color: var(--color-white);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .author-role {
+            color: var(--color-gold);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===========================
+           CTA SECTION
+           =========================== */
+
+        .cta {
+            padding: var(--spacing-2xl) 0;
+            background: linear-gradient(135deg, var(--color-dark-gray) 0%, var(--color-medium-gray) 100%);
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .cta {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .cta-title {
+                font-size: 1.75rem;
+            }
+
+            .cta-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===========================
+           CONTACT SECTION
+           =========================== */
+
+        .contact {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--color-black);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        .info-item {
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .info-title {
+            color: var(--color-gold);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .contact-link {
+            color: var(--color-text);
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            color: var(--color-gold);
+        }
+
+        .contact-text {
+            font-size: 1.05rem;
+            color: var(--color-text);
+        }
+
+        /* ===========================
+           FORM STYLING
+           =========================== */
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--color-medium-gray);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--color-white);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+        }
+
+        .form-input::placeholder {
+            color: rgba(224, 224, 224, 0.5);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-input option {
+            background-color: var(--color-dark-gray);
+            color: var(--color-white);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-success-message {
+            color: var(--color-gold);
+            text-align: center;
+            font-weight: 600;
+            padding: var(--spacing-md);
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* ===========================
+           FOOTER
+           =========================== */
+
+        .footer {
+            background-color: var(--color-dark-gray);
+            padding: var(--spacing-2xl) 0 var(--spacing-lg);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .footer-links a {
+            color: var(--color-text);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            font-size: 0.9rem;
+            color: rgba(224, 224, 224, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .footer {
+                padding: var(--spacing-xl) 0 var(--spacing-lg);
+            }
+        }
+
+        /* ===========================
+           LIGHTBOX
+           =========================== */
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: var(--spacing-lg);
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 3rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-gold);
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* ===========================
+           ANIMATIONS
+           =========================== */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ===========================
+           SCROLLBAR STYLING
+           =========================== */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--color-dark-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--color-gold);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--color-gold-light);
+        }
+
+        /* ===========================
+           UTILITY CLASSES
+           =========================== */
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-wrapper">
+                <img src="images/logo.png" alt="Pixel by Swaraj Logo" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <span class="logo-fallback" style="display:none;">Pixel by Swaraj</span>
+            </div>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Swaraj%2C%20I%20am%20interested%20in%20your%20photography%2Fvideography%20services.%20Please%20share%20details." class="nav-cta" target="_blank" rel="noopener noreferrer">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo-wrapper">
+                <img src="images/logo.png" alt="Pixel by Swaraj" class="hero-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <span class="hero-logo-fallback" style="display:none;">Pixel by Swaraj</span>
+            </div>
+            <h1 class="hero-title">Capture Your Story</h1>
+            <p class="hero-subtitle">With Pixel by Swaraj</p>
+            <p class="hero-description">Premium photography and videography that brings your moments to life with cinematic quality and creative storytelling.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Swaraj%2C%20I%20am%20interested%20in%20your%20photography%2Fvideography%20services.%20Please%20share%20details." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book on WhatsApp</a>
+                <a href="#portfolio" class="btn btn-secondary">View Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Explore our latest work across different categories</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="wedding">Wedding</button>
+                <button class="filter-btn" data-filter="pre-wedding">Pre-Wedding</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="portraits">Portraits</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="videography">Videography</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="wedding">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 14px;">Wedding Photo</div>
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Wedding</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="pre-wedding">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 14px;">Pre-Wedding</div>
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Pre-Wedding</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="events">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 14px;">Event Photo</div>
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Events</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="portraits">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 14px;">Portrait</div>
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Portraits</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="commercial">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 14px;">Commercial</div>
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Commercial</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="videography">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37; font-size: 14px;">Videography</div>
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Videography</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional solutions tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M18 22h7l4-6h8l4 6h7a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V28a6 6 0 0 1 6-6h2z"/><circle cx="32" cy="37" r="10"/><circle cx="47" cy="29" r="1.5"/></svg></div>
+                    <h3 class="service-title">Wedding Photography</h3>
+                    <p class="service-description">Capture every precious moment of your wedding day with cinematic excellence and artistic direction.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 50s-18-10.8-18-24a9.5 9.5 0 0 1 17-5.8A9.5 9.5 0 0 1 48 26c0 13.2-16 24-16 24z"/><path d="M24 20c2-3 5-5 8-5s6 2 8 5"/></svg></div>
+                    <h3 class="service-title">Pre-Wedding Shoots</h3>
+                    <p class="service-description">Romantic and creative pre-wedding photography sessions at stunning locations of your choice.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M18 48l8-30 20 20-28 10z"/><path d="M26 18l20 20"/><path d="M42 14l4-4"/><path d="M48 24h6"/><path d="M34 10v6"/><path d="M50 14l4 4"/><path d="M18 48l10-10"/></svg></div>
+                    <h3 class="service-title">Event Photography</h3>
+                    <p class="service-description">Professional coverage of corporate events, birthdays, anniversaries, and special occasions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="23" r="10"/><path d="M14 52c3-10 10-15 18-15s15 5 18 15"/></svg></div>
+                    <h3 class="service-title">Portrait Photography</h3>
+                    <p class="service-description">Stunning individual and group portraits with professional lighting and composition.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M16 52V14h24v38"/><path d="M40 28h8v24"/><path d="M22 22h4"/><path d="M30 22h4"/><path d="M22 31h4"/><path d="M30 31h4"/><path d="M22 40h4"/><path d="M30 40h4"/><path d="M12 52h40"/></svg></div>
+                    <h3 class="service-title">Commercial Shoots</h3>
+                    <p class="service-description">Product photography, corporate branding, and commercial content creation for businesses.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M12 24h40v28H12z"/><path d="M12 24l6-12h40l-6 12"/><path d="M23 12l-6 12"/><path d="M36 12l-6 12"/><path d="M49 12l-6 12"/><path d="M28 33l12 7-12 7z"/></svg></div>
+                    <h3 class="service-title">Cinematic Videography</h3>
+                    <p class="service-description">High-quality video production with professional editing, color grading, and sound design.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M14 24h27a5 5 0 0 1 5 5v18a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5V29a5 5 0 0 1 5-5z"/><path d="M46 34l10-7v22l-10-7z"/><circle cx="21" cy="17" r="6"/><circle cx="35" cy="17" r="6"/></svg></div>
+                    <h3 class="service-title">Reel & Short Videos</h3>
+                    <p class="service-description">Creative short-form videos optimized for social media platforms and marketing.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 8l5.5 15L52 29l-14.5 6L32 50l-5.5-15L12 29l14.5-6L32 8z"/><path d="M50 44l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z"/><path d="M14 10l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5L14 10z"/></svg></div>
+                    <h3 class="service-title">Photo Editing & Retouching</h3>
+                    <p class="service-description">Professional color grading, retouching, and enhancement to bring out the best in every image.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Us</h2>
+                <p class="section-subtitle">What sets Pixel by Swaraj apart</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-number">01</div>
+                    <h3 class="feature-title">High-Resolution Output</h3>
+                    <p class="feature-text">Professional-grade equipment and techniques ensure your photos and videos are crisp, clear, and print-ready.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">02</div>
+                    <h3 class="feature-title">Creative Storytelling</h3>
+                    <p class="feature-text">We don't just capture moments; we tell your story with cinematic vision and artistic excellence.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">03</div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-text">Quick turnaround on edited photos and videos without compromising on quality.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">04</div>
+                    <h3 class="feature-title">Professional Editing</h3>
+                    <p class="feature-text">Premium color grading, retouching, and post-production to enhance every image and frame.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">05</div>
+                    <h3 class="feature-title">Custom Packages</h3>
+                    <p class="feature-text">Flexible and personalized service packages designed to fit your specific needs and budget.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">06</div>
+                    <h3 class="feature-title">Easy Booking</h3>
+                    <p class="feature-text">Simple WhatsApp booking process. Send your requirements and get a quick response.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Pixel by Swaraj</h2>
+                <p class="section-subtitle">A passion for visual storytelling</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At Pixel by Swaraj, we believe that every moment tells a story worth preserving. With years of experience in professional photography and videography, we specialize in capturing life's most significant moments with cinematic quality and artistic vision.</p>
+                    <p>Our approach combines technical expertise with creative storytelling. We pay meticulous attention to detail, from lighting and composition to color grading and post-production. Each project is tailored to reflect your unique vision and personality.</p>
+                    <p>Whether it's a wedding, corporate event, or commercial shoot, we deliver professional-grade content that exceeds expectations. Our commitment to excellence and customer satisfaction drives everything we do.</p>
+                </div>
+                <div class="about-image">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #d4af37;">About Image</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Testimonials</h2>
+                <p class="section-subtitle">What our clients have to say</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Swaraj captured our wedding day beautifully. His attention to detail and creative direction made every moment feel cinematic. We couldn't be happier with the final photos."</p>
+                    <div class="testimonial-author">
+                        <p class="author-name">Priya & Arjun</p>
+                        <p class="author-role">Wedding Clients</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Working with Pixel by Swaraj for our product photography was exceptional. The quality of the images and the professional handling of our brand was outstanding. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <p class="author-name">Rahul Sharma</p>
+                        <p class="author-role">Business Owner</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The pre-wedding shoot with Swaraj was so much fun and the results are amazing. We got exactly the romantic and artistic photos we wanted. Best decision!"</p>
+                    <div class="testimonial-author">
+                        <p class="author-name">Neha & Vikram</p>
+                        <p class="author-role">Pre-Wedding Clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Ready to Book Your Shoot?</h2>
+            <p class="cta-text">Send your requirements on WhatsApp and get a quick response with personalized solutions.</p>
+            <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Swaraj%2C%20I%20am%20interested%20in%20your%20photography%2Fvideography%20services.%20Please%20share%20details." class="btn btn-large btn-primary" target="_blank" rel="noopener noreferrer">Inquire on WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Multiple ways to reach us</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h3 class="info-title">WhatsApp</h3>
+                        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="contact-link">+91 XXXXXXXXXX</a>
+                    </div>
+                    <div class="info-item">
+                        <h3 class="info-title">Instagram</h3>
+                        <a href="https://instagram.com/pixelbyswaraj" target="_blank" rel="noopener noreferrer" class="contact-link">@pixelbyswaraj</a>
+                    </div>
+                    <div class="info-item">
+                        <h3 class="info-title">Email</h3>
+                        <a href="mailto:contact@pixelbyswaraj.com" class="contact-link">contact@pixelbyswaraj.com</a>
+                    </div>
+                    <div class="info-item">
+                        <h3 class="info-title">Location</h3>
+                        <p class="contact-text">Your City, Your Country</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" id="name" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Your Phone Number" id="phone" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <select id="eventType" required class="form-input">
+                            <option value="">Select Event Type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="pre-wedding">Pre-Wedding</option>
+                            <option value="event">Event</option>
+                            <option value="portrait">Portrait</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="videography">Videography</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="date" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Tell us about your project..." id="message" rows="4" class="form-input"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-btn">Send Inquiry</button>
+                    <p class="form-success-message" id="successMessage" style="display:none;">Thank you! We'll contact you shortly.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/logo.png" alt="Pixel by Swaraj" class="footer-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                    <span class="logo-fallback" style="display:none;">Pixel by Swaraj</span>
+                    <p class="footer-description">Premium photography and videography capturing your story with cinematic excellence.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Follow Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://instagram.com/pixelbyswaraj" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                        <li><a href="mailto:contact@pixelbyswaraj.com">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pixel by Swaraj. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <img id="lightboxImage" src="" alt="Portfolio image" class="lightbox-image">
+    </div>
+
+    <script>
+        // ===========================
+        // HAMBURGER MENU FUNCTIONALITY
+        // ===========================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Toggle hamburger menu
+            hamburgerBtn.addEventListener('click', function() {
+                hamburgerBtn.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when a nav link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.navbar')) {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // ===========================
+        // PORTFOLIO FILTERING
+        // ===========================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter items
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hidden');
+                            item.style.animation = 'none';
+                            // Trigger reflow to restart animation
+                            void item.offsetWidth;
+                            item.style.animation = 'fadeIn 0.5s ease-out';
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+
+        // ===========================
+        // LIGHTBOX FUNCTIONALITY
+        // ===========================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            // Open lightbox on image click
+            portfolioItems.forEach(item => {
+                const img = item.querySelector('img');
+                if (img) {
+                    img.addEventListener('click', function() {
+                        lightbox.classList.add('active');
+                        lightboxImage.src = img.src;
+                        lightboxImage.alt = img.alt;
+                        document.body.style.overflow = 'hidden';
+                    });
+                }
+            });
+
+            // Close lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            lightboxClose.addEventListener('click', closeLightbox);
+
+            // Close on background click
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+
+        // ===========================
+        // CONTACT FORM HANDLING
+        // ===========================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Get form values
+                    const name = document.getElementById('name').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const eventType = document.getElementById('eventType').value;
+                    const date = document.getElementById('date').value;
+                    const message = document.getElementById('message').value.trim();
+
+                    // Validate form
+                    if (!name || !phone || !eventType || !date || !message) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+
+                    // Format message for WhatsApp
+                    const whatsappMessage = `Hi Swaraj,%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AEvent Type: ${encodeURIComponent(eventType)}%0ADate: ${encodeURIComponent(date)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+
+                    // Open WhatsApp with pre-filled message
+                    const whatsappURL = `https://wa.me/91XXXXXXXXXX?text=${whatsappMessage}`;
+                    window.open(whatsappURL, '_blank');
+
+                    // Reset form and show success message
+                    contactForm.reset();
+                    successMessage.style.display = 'block';
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(function() {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                });
+            }
+        });
+
+        // ===========================
+        // SMOOTH SCROLL BEHAVIOR
+        // ===========================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    const target = document.querySelector(href);
+
+                    // Only prevent default for anchor links that have a target
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===========================
+        // SCROLL ANIMATIONS
+        // ===========================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Observe elements for fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe service cards and testimonial cards
+            const cards = document.querySelectorAll('.service-card, .testimonial-card, .feature-item');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(card);
+            });
+        });
+
+        console.log('Pixel by Swaraj - Website loaded successfully');
+    </script>
+</body>
+</html>

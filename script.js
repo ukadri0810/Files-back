@@ -259,6 +259,31 @@ function setupLoader() {
   setTimeout(() => loader?.classList.add("hide"), 1800);
 }
 
+function setupQuickTripEnquiry() {
+  const button = document.getElementById("quickTripBtn");
+  if (!button) return;
+
+  button.addEventListener("click", () => {
+    const destination = document.getElementById("quickDestination")?.value.trim() || "";
+    const travelType = document.getElementById("quickTravelType")?.value.trim() || "";
+    const travellers = document.getElementById("quickTravellers")?.value.trim() || "";
+
+    const text = `Hello Design Tours and Travels,
+I want package details for a customised trip.
+
+Destination: ${destination}
+Travel type: ${travelType}
+No. of travellers: ${travellers}
+Preferred travel month: 
+Departure city: 
+Budget range: 
+
+Please share package options and contact-for-price details.`;
+
+    window.open(whatsappLink(text), "_blank");
+  });
+}
+
 function setupEnquiryForm() {
   const form = document.getElementById("enquiryForm");
   const successMessage = document.getElementById("successMsg");
@@ -292,6 +317,7 @@ setupModeButtons();
 setupMobileMenu();
 setupLoader();
 setupEnquiryForm();
+setupQuickTripEnquiry();
 
 window.addEventListener("scroll", observeReveal);
 observeReveal();

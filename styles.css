@@ -1519,3 +1519,133 @@ body.haj-mode .site-footer {
     width: 100%;
   }
 }
+
+
+/* Final polish: even package filter buttons, document bullets, improved lanterns */
+@media (min-width: 769px) {
+  .filter-row {
+    width: 340px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .filter-btn {
+    min-width: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .filter-btn {
+    min-width: 0;
+    width: 100%;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+.doc-bullets {
+  margin: 14px 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.doc-bullets li {
+  position: relative;
+  margin: 10px 0;
+  padding-left: 22px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.55;
+}
+
+.doc-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-2);
+  box-shadow: 0 0 12px rgba(244, 213, 138, 0.55);
+}
+
+.lantern {
+  position: absolute;
+  width: 86px;
+  height: 128px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  opacity: 0.72;
+  filter: drop-shadow(0 16px 28px rgba(244, 213, 138, 0.16));
+  pointer-events: none;
+}
+
+.lantern::before,
+.lantern::after {
+  display: none !important;
+}
+
+.lantern svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.lantern-chain,
+.lantern-hook,
+.lantern-top,
+.lantern-body,
+.lantern-glass,
+.lantern-base {
+  fill: rgba(6, 68, 55, 0.22);
+  stroke: rgba(244, 213, 138, 0.78);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lantern-glass {
+  fill: rgba(244, 213, 138, 0.08);
+}
+
+.lantern-flame {
+  fill: rgba(244, 213, 138, 0.48);
+  stroke: rgba(255, 231, 166, 0.72);
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 12px rgba(244, 213, 138, 0.75));
+  animation: flamePulse 2.4s ease-in-out infinite;
+}
+
+.lantern-one {
+  right: 9%;
+  top: 13%;
+  animation: lanternFloat 8s ease-in-out infinite;
+}
+
+.lantern-two {
+  left: 7%;
+  bottom: 16%;
+  transform: scale(0.78);
+  animation: lanternFloat 9s ease-in-out infinite reverse;
+}
+
+@keyframes flamePulse {
+  50% { opacity: 0.72; transform: translateY(-1px); }
+}
+
+.quick-card button {
+  width: 100%;
+}

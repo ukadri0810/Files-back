@@ -1,0 +1,1521 @@
+/* =========================================================
+   Design Tours and Travels
+   Clean, human-readable stylesheet
+   ========================================================= */
+
+:root {
+  --blue: #1e5aa8;
+  --blue-dark: #143b6d;
+  --blue-soft: #eaf4ff;
+  --blue-bg: #f5f9ff;
+  --emerald: #06291d;
+  --emerald-2: #0b5a3c;
+  --gold: #d7aa42;
+  --gold-2: #f4d58a;
+  --white: #ffffff;
+  --text: #4b5563;
+  --border: #dce8f5;
+  --shadow: 0 20px 55px rgba(20, 59, 109, 0.14);
+  --font-heading: "Poppins", Arial, sans-serif;
+  --font-body: "Manrope", Arial, sans-serif;
+  --font-arabic: "Amiri", serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+body.loader-active {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+}
+
+.container {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 92px 0;
+}
+
+.section-label {
+  margin-bottom: 10px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin-bottom: 16px;
+  color: var(--blue-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.13;
+}
+
+.section-sub {
+  max-width: 720px;
+  font-size: 1rem;
+}
+
+.section-head {
+  margin-bottom: 34px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 24px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 10px 24px rgba(30, 90, 168, 0.22);
+}
+
+.btn-white {
+  background: var(--white);
+  color: var(--blue-dark);
+}
+
+.btn-outline {
+  border: 1.5px solid var(--blue);
+  background: var(--white);
+  color: var(--blue);
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: var(--white);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.24);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  color: #173b2f;
+  box-shadow: 0 12px 28px rgba(215, 170, 66, 0.25);
+}
+
+.full-btn {
+  width: 100%;
+}
+
+/* Loader */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f8fbff 0%, #edf7ff 48%, #fff7df 100%);
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-card {
+  width: min(430px, 88vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  animation: loaderEnter 0.35s ease both;
+}
+
+.loader-logo {
+  width: min(340px, 76vw);
+  max-height: 115px;
+  object-fit: contain;
+}
+
+.loader-card p {
+  color: #1a3a6b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.78;
+}
+
+.plane-loader-line {
+  position: relative;
+  width: min(280px, 70vw);
+  height: 28px;
+}
+
+.plane-loader-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 90, 168, 0.12),
+    rgba(30, 90, 168, 0.55),
+    rgba(215, 170, 66, 0.68),
+    rgba(215, 170, 66, 0.12)
+  );
+  transform: translateY(-50%);
+}
+
+.plane-loader-track {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  animation: planeLineDraw 1.55s cubic-bezier(0.22, 0.8, 0.22, 1) forwards;
+}
+
+.aircraft-loader-svg {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  filter: drop-shadow(0 7px 14px rgba(30, 90, 168, 0.26));
+  animation: planeMove 1.55s cubic-bezier(0.22, 0.8, 0.22, 1) forwards;
+}
+
+.aircraft-body {
+  fill: var(--blue);
+  stroke: var(--white);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.aircraft-window {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+@keyframes loaderEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes planeLineDraw {
+  to { transform: translateY(-50%) scaleX(1); }
+}
+
+@keyframes planeMove {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(calc(min(280px, 70vw) - 34px)); opacity: 0.95; }
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 28px rgba(20, 59, 109, 0.07);
+}
+
+.header-inner {
+  min-height: 98px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand img {
+  width: 260px;
+  max-height: 86px;
+  object-fit: contain;
+}
+
+.mode-switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 310px;
+  padding: 6px;
+  border: 1px solid #d5e8ff;
+  border-radius: 999px;
+  background: #eef6ff;
+  overflow: hidden;
+}
+
+.mode-switch::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  z-index: 0;
+  width: calc(50% - 6px);
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: 0 10px 26px rgba(30, 90, 168, 0.16);
+  transition: transform 0.35s ease, background 0.35s ease;
+}
+
+body.haj-mode .mode-switch {
+  border-color: #cce9d4;
+  background: #eef8f1;
+}
+
+body.haj-mode .mode-switch::before {
+  transform: translateX(100%);
+  background: linear-gradient(135deg, #053c2a, #0b6a49);
+}
+
+.switch-btn {
+  position: relative;
+  z-index: 1;
+  padding: 12px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--blue-dark);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.switch-btn.tours.active {
+  color: var(--blue);
+}
+
+.switch-btn.haj.active {
+  color: var(--white);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 23px;
+  height: 2px;
+  margin: 5px auto;
+  border-radius: 10px;
+  background: var(--blue-dark);
+}
+
+.mobile-menu {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 14px 0 18px;
+}
+
+.mobile-menu.hidden {
+  display: none;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+  display: block;
+  width: 100%;
+  padding: 12px 4px;
+  border: 0;
+  border-bottom: 1px solid #eef2f7;
+  background: transparent;
+  color: var(--blue-dark);
+  font-family: var(--font-body);
+  font-weight: 800;
+  text-align: left;
+}
+
+/* Mode panels */
+.mode-panel {
+  display: none;
+}
+
+.mode-panel.active {
+  display: block;
+  animation: panelIn 0.38s ease both;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Tours hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.tours-hero {
+  min-height: 84vh;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(8, 29, 63, 0.94), rgba(22, 58, 111, 0.9)),
+    url("../assets/dubai.jpg") center/cover no-repeat;
+}
+
+.tours-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.75fr;
+  gap: 54px;
+  align-items: center;
+}
+
+.hero-badge,
+.haj-badge {
+  display: inline-flex;
+  margin-bottom: 24px;
+  padding: 9px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffd77f;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin-bottom: 20px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.7rem);
+  line-height: 1.06;
+}
+
+.hero h1 span,
+.arabic-line {
+  color: var(--gold-2);
+}
+
+.hero p {
+  max-width: 650px;
+  margin-bottom: 34px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 1.05rem;
+}
+
+.hero-buttons,
+.contact-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.quick-card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.18);
+}
+
+.quick-card h3 {
+  margin-bottom: 18px;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+}
+
+.quick-card input,
+.quick-card select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.13);
+  color: var(--white);
+  outline: none;
+}
+
+.quick-card input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.quick-card select option {
+  color: #111;
+}
+
+/* Stats and trust */
+.stats-section {
+  margin-top: -48px;
+  position: relative;
+  z-index: 4;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stat-card,
+.service-card,
+.why-card,
+.package-card,
+.contact-box,
+form {
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 35px rgba(20, 59, 109, 0.09);
+}
+
+.stat-card {
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.stat-card strong {
+  display: block;
+  color: var(--blue-dark);
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+}
+
+.trust-strip {
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.trust-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.icon-box {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: var(--blue-soft);
+}
+
+.icon-box svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trust-item strong {
+  display: block;
+  color: var(--blue-dark);
+}
+
+.trust-item span {
+  font-size: 0.82rem;
+}
+
+/* Package slider */
+.packages-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.filter-btn {
+  min-width: 126px;
+  padding: 12px 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--blue-dark);
+  font-family: var(--font-body);
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--white);
+}
+
+.package-slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(300px, 360px);
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 2px 22px;
+}
+
+.package-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.package-slider::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: #c8d9ee;
+}
+
+.package-card {
+  overflow: hidden;
+  border-radius: 22px;
+  scroll-snap-align: start;
+  transition: 0.25s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-7px);
+}
+
+.package-img {
+  position: relative;
+  height: 210px;
+  background-color: #dbeafe;
+  background-size: cover;
+  background-position: center;
+}
+
+.package-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.48));
+}
+
+.pkg-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 7px 12px;
+  border-radius: 99px;
+  background: var(--white);
+  color: var(--blue-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.package-body {
+  padding: 22px;
+}
+
+.package-body h3,
+.service-card h3,
+.why-card h3,
+form h3 {
+  margin-bottom: 8px;
+  color: var(--blue-dark);
+  font-family: var(--font-heading);
+}
+
+.meta,
+.places {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.meta span,
+.places span {
+  padding: 6px 9px;
+  border-radius: 99px;
+  font-size: 0.76rem;
+}
+
+.meta span {
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+
+.places span {
+  border: 1px solid #e2e8f0;
+  background: #f7fafc;
+  color: #475569;
+}
+
+/* Services and why */
+.services,
+.contact {
+  background: var(--blue-bg);
+}
+
+.services-grid,
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.service-card,
+.why-card {
+  padding: 28px 23px;
+  border-radius: 20px;
+  transition: 0.28s ease;
+}
+
+.service-card:hover,
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+}
+
+.why-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+}
+
+/* Haj and Umrah mode */
+body.haj-mode .site-header {
+  border-bottom-color: #d9eadf;
+}
+
+.haj-hero {
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(2, 22, 15, 0.95), rgba(4, 56, 36, 0.93)),
+    url("../assets/makkah.jpg") center/cover no-repeat;
+}
+
+.haj-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.22) 1px, transparent 0);
+  background-size: 42px 42px;
+  animation: patternMove 20s linear infinite;
+}
+
+.haj-hero::after {
+  content: "لَبَّيْكَ اللَّهُمَّ لَبَّيْك";
+  position: absolute;
+  right: clamp(20px, 4vw, 72px);
+  top: 7%;
+  max-width: min(540px, 42vw);
+  overflow: hidden;
+  color: rgba(244, 213, 138, 0.15);
+  font-family: var(--font-arabic);
+  font-size: clamp(3.4rem, 7.8vw, 7.4rem);
+  line-height: 1.05;
+  text-align: right;
+  pointer-events: none;
+  animation: calligraphyFloat 9s ease-in-out infinite;
+}
+
+.haj-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  padding: 88px 0;
+}
+
+.arabic-line {
+  margin-bottom: 24px;
+  max-width: 100%;
+  font-family: var(--font-arabic);
+  font-size: clamp(2.6rem, 5.8vw, 4.9rem);
+  line-height: 1.22;
+  overflow-wrap: break-word;
+  text-shadow: 0 0 34px rgba(215, 170, 66, 0.25);
+}
+
+.haj-hero h1,
+.haj-section .section-title,
+.islamic-cta .section-title {
+  color: var(--white);
+  font-family: var(--font-heading);
+}
+
+.haj-section,
+.islamic-cta {
+  background: #041b12;
+  color: rgba(255, 255, 255, 0.76);
+  border-top: 1px solid rgba(215, 170, 66, 0.18);
+}
+
+.haj-section .section-label,
+.islamic-cta .section-label {
+  color: var(--gold);
+}
+
+.haj-section .section-sub,
+.islamic-cta .section-sub {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.haj-grid,
+.guide-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 34px;
+}
+
+.haj-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.guide-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.haj-card,
+.guide-card {
+  padding: 30px;
+  border: 1px solid rgba(215, 170, 66, 0.22);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+}
+
+.haj-card h3,
+.guide-card h3 {
+  margin-bottom: 12px;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+}
+
+.haj-card span {
+  display: inline-flex;
+  margin-top: 14px;
+  color: var(--gold-2);
+  font-weight: 800;
+}
+
+.guide-card:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+.guide-card ol {
+  margin-top: 16px;
+  padding-left: 20px;
+}
+
+.guide-card li {
+  margin: 8px 0;
+}
+
+.lantern {
+  position: absolute;
+  width: 54px;
+  height: 78px;
+  border: 2px solid rgba(244, 213, 138, 0.55);
+  border-radius: 24px 24px 16px 16px;
+  opacity: 0.62;
+}
+
+.lantern::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  width: 1px;
+  height: 34px;
+  background: rgba(244, 213, 138, 0.55);
+}
+
+.lantern::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(244, 213, 138, 0.22);
+  box-shadow: 0 0 25px rgba(244, 213, 138, 0.55);
+  transform: translateX(-50%);
+}
+
+.lantern-one {
+  right: 10%;
+  top: 16%;
+  animation: lanternFloat 8s ease-in-out infinite;
+}
+
+.lantern-two {
+  left: 8%;
+  bottom: 18%;
+  transform: scale(0.75);
+  animation: lanternFloat 9s ease-in-out infinite reverse;
+}
+
+.kaaba-mark {
+  position: absolute;
+  right: 12%;
+  bottom: -16px;
+  width: 360px;
+  height: 280px;
+  border-radius: 16px 16px 4px 4px;
+  background: rgba(255, 255, 255, 0.09);
+  opacity: 0.42;
+}
+
+.kaaba-mark::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 72px;
+  height: 48px;
+  background: rgba(215, 170, 66, 0.26);
+}
+
+@keyframes patternMove {
+  to { background-position: 140px 70px; }
+}
+
+@keyframes calligraphyFloat {
+  50% { transform: translateY(16px) translateX(-16px); }
+}
+
+@keyframes lanternFloat {
+  50% { transform: translateY(-18px); }
+}
+
+/* Contact and footer */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr;
+  gap: 50px;
+}
+
+.contact-box,
+form {
+  padding: 30px;
+  border-radius: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--blue-dark);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  outline: none;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.success-msg {
+  display: none;
+  margin-top: 14px;
+  padding: 13px;
+  border-radius: 12px;
+  background: #eaf8ed;
+  color: #206b36;
+  font-weight: 800;
+  text-align: center;
+}
+
+.site-footer {
+  padding: 54px 0 26px;
+  background: var(--blue-dark);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+body.haj-mode .site-footer {
+  background: #073a30;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr 0.9fr 0.9fr 1fr;
+  gap: 30px;
+}
+
+.footer-grid h3,
+.footer-grid h4 {
+  color: var(--white);
+}
+
+.footer-grid a {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  margin-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+}
+
+.bottom-cta {
+  display: none;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: 0.75s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .brand img {
+    width: 215px;
+    max-height: 76px;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .header-actions .btn-primary {
+    display: none;
+  }
+
+  .mode-switch {
+    width: 285px;
+  }
+
+  .hero-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-card {
+    max-width: 520px;
+  }
+
+  .trust-grid,
+  .services-grid,
+  .why-grid,
+  .haj-grid,
+  .guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .packages-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 48px;
+  }
+
+  .container {
+    width: min(100% - 24px, 1160px);
+  }
+
+  .section {
+    padding: 66px 0;
+  }
+
+  .header-inner {
+    min-height: 82px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .brand img {
+    width: 160px;
+    max-height: 64px;
+  }
+
+  .mode-switch {
+    order: 3;
+    width: 100%;
+    margin: 0 auto 8px;
+  }
+
+  .switch-btn {
+    font-size: 0.78rem;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .header-actions .btn-whatsapp {
+    padding: 11px 16px;
+    font-size: 0.82rem;
+  }
+
+  .tours-hero,
+  .haj-hero {
+    min-height: auto;
+  }
+
+  .hero-content,
+  .haj-content {
+    padding: 72px 0;
+  }
+
+  .hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .quick-card {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(110px, 1fr));
+    gap: 12px;
+    overflow-x: auto;
+  }
+
+  .stat-card {
+    padding: 18px 12px;
+  }
+
+  .trust-grid,
+  .services-grid,
+  .why-grid,
+  .haj-grid,
+  .guide-grid,
+  .form-row,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .package-slider {
+    grid-auto-columns: minmax(275px, 88vw);
+  }
+
+  .filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .filter-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-btn:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .haj-hero::after {
+    left: 0;
+    right: 0;
+    top: 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 2.8rem;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0.16;
+    transform: none;
+  }
+
+  .arabic-line {
+    margin-bottom: 22px;
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+  .kaaba-mark {
+    right: -70px;
+    bottom: 26px;
+    width: 280px;
+    height: 220px;
+    opacity: 0.28;
+  }
+
+  .contact-box,
+  form {
+    padding: 22px;
+  }
+
+  .bottom-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -10px 25px rgba(20, 59, 109, 0.1);
+  }
+
+  .bottom-cta a {
+    padding: 12px 8px;
+    color: var(--blue-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-align: center;
+  }
+}
+/* =========================================================
+   HAJ HERO FINAL FIX
+   1. Main Arabic line in one line on desktop
+   2. Faded Arabic line moved away from heading
+   3. Remove unwanted decorative box
+   4. Reduce green overlay slightly so background image is visible
+   ========================================================= */
+
+.haj-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(2, 22, 15, 0.82),
+      rgba(4, 56, 36, 0.78)
+    ),
+    url("../assets/makkah.jpg") center/cover no-repeat !important;
+}
+
+.haj-hero::before {
+  opacity: 0.1 !important;
+}
+
+/* Faded decorative Arabic on right side */
+.haj-hero::after {
+  content: "لَبَّيْكَ اللَّهُمَّ\Aلَبَّيْكَ" !important;
+  white-space: pre-line !important;
+  position: absolute;
+  right: clamp(20px, 4vw, 72px) !important;
+  top: 34px !important;
+  width: min(420px, 28vw) !important;
+  max-width: 420px !important;
+  overflow: hidden !important;
+  color: rgba(244, 213, 138, 0.14) !important;
+  font-family: var(--font-arabic) !important;
+  font-size: clamp(2.8rem, 4.6vw, 5rem) !important;
+  line-height: 0.95 !important;
+  text-align: right !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  animation: calligraphyFloat 9s ease-in-out infinite !important;
+}
+
+/* Main visible Arabic line */
+.arabic-line {
+  display: block !important;
+  margin: 0 0 26px !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  font-family: var(--font-arabic) !important;
+  font-size: clamp(2.4rem, 4.5vw, 4.6rem) !important;
+  line-height: 1.08 !important;
+  color: var(--gold-2) !important;
+  text-shadow: 0 0 34px rgba(215, 170, 66, 0.22) !important;
+}
+
+/* Make sure hero content stays above decorative text */
+.haj-content {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 760px !important;
+  padding: 88px 0 !important;
+}
+
+/* Remove unwanted decorative box on green background */
+.kaaba-mark {
+  display: none !important;
+}
+
+/* If any empty glass card is showing in Haj hero, hide it */
+.haj-hero .quick-card,
+.haj-hero .hero-side-card,
+.haj-hero .glass-card {
+  display: none !important;
+}
+
+/* Medium screens */
+@media (max-width: 980px) {
+  .haj-hero::after {
+    width: min(340px, 30vw) !important;
+    max-width: 340px !important;
+    font-size: clamp(2.4rem, 4.2vw, 4rem) !important;
+    top: 28px !important;
+  }
+
+  .arabic-line {
+    font-size: clamp(2.1rem, 4vw, 3.6rem) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .haj-hero {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(2, 22, 15, 0.86),
+        rgba(4, 56, 36, 0.82)
+      ),
+      url("../assets/makkah.jpg") center/cover no-repeat !important;
+  }
+
+  .haj-hero::after {
+    content: "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ" !important;
+    white-space: nowrap !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    font-size: 2.15rem !important;
+    line-height: 1 !important;
+    opacity: 0.13 !important;
+    overflow: hidden !important;
+  }
+
+  .arabic-line {
+    white-space: normal !important;
+    overflow: visible !important;
+    font-size: 1.9rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 22px !important;
+  }
+}
+/* Remove faded background Labaik calligraphy from Haj hero */
+.haj-hero::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Final premium update: package filters, Umrah cards, logo polish */
+.haj-card-btn {
+  margin-top: 18px;
+  width: fit-content;
+  min-width: 142px;
+}
+
+.haj-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.haj-card p {
+  flex: 1;
+}
+
+.filter-row .filter-btn {
+  min-width: 145px;
+}
+
+/* Keep updated transparent logo clean in loader and header */
+.loader-logo,
+.brand img {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.loader-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.loader-logo {
+  width: min(390px, 82vw) !important;
+  max-height: 122px !important;
+}
+
+.brand img {
+  width: 310px !important;
+  max-height: 96px !important;
+}
+
+@media (max-width: 980px) {
+  .brand img {
+    width: 250px !important;
+    max-height: 82px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand img {
+    width: 205px !important;
+    max-height: 76px !important;
+  }
+
+  .loader-logo {
+    width: min(310px, 82vw) !important;
+    max-height: 105px !important;
+  }
+
+  .filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter-row .filter-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .haj-card-btn {
+    width: 100%;
+  }
+}
